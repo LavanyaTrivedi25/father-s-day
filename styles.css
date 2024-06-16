@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #3494e6, #ec6ead);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Prevents overflow issues with glitter effect */
+    position: relative; /* Ensure relative positioning for absolute elements */
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#gifImage {
+    width: 150px; 
+    height: 100px; 
+}
+
+.glitter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicks to pass through */
+    z-index: 0; /* Behind the card content */
+}
+
+.glitter::before {
+    content: '';
+    position: absolute;
+    width: 100vw; /* Full width of viewport */
+    height: 100vh; /* Full height of viewport */
+    background-image: radial-gradient(circle, #FFF 10%, transparent 10.5%);
+    background-size: 20px 20px; /* Adjust glitter particle size */
+    top: calc(-50vh); /* Spread particles above and below viewport */
+    left: calc(-50vw); /* Spread particles left and right of viewport */
+    animation: glitter 1.5s infinite linear; /* Adjust animation duration and type */
+}
+
+@keyframes glitter {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Father's Day Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #3494e6, #ec6ead);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevents overflow issues */
+            position: relative; /* Ensure relative positioning for absolute elements */
+        }
+        .glitter {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allows clicks to pass through */
+            z-index: 1; /* Above all other content */
+        }
+        .glitter::before {
+            content: '';
+            position: absolute;
+            width: 100vw; /* Full width of viewport */
+            height: 100vh; /* Full height of viewport */
+            background-image: radial-gradient(circle, #FFF 10%, transparent 10.5%);
+            background-size: 20px 20px; /* Adjust glitter particle size */
+            top: calc(-50vh); /* Spread particles above and below viewport */
+            left: calc(-50vw); /* Spread particles left and right of viewport */
+            animation: glitter 1.5s infinite linear; /* Adjust animation duration and type */
+        }
+        @keyframes glitter {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .balloon-container {
+            position: absolute;
+            bottom: 0; /* Start at the bottom of the screen */
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allows clicks to pass through */
+            z-index: 2; /* Above glitter effect, below card */
+        }
+        .balloon {
+            position: absolute;
+            width: 50px; /* Adjust balloon size */
+            height: auto;
+            z-index: 3; /* Above all other content */
+            animation: floatUp 15s ease-in-out infinite; /* Adjust animation duration and timing */
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh); /* Start below the screen */
+            }
+            100% {
+                transform: translateY(-100vh); /* Float up to the top of the screen */
+            }
+        }
+        .card {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative; /* Ensure stacking context */
+            z-index: 4; /* Above all other elements */
+        }
+        .poem {
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio element for background music -->
+    <audio id="backgroundMusic" loop>
+        <source src="background_music.mp3" type="audio/mpeg">
+        <source src="background_music.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="glitter"></div>
+    <div class="balloon-container"></div>
+    <div class="card">
+        <h1>Happy Father's Day!</h1>
+        <p id="message">Loading...</p>
+        <button id="revealButton">Click to reveal a surprise!</button>
+        <div id="surprise" style="display: none;">
+            <p id="poem" class="poem">
+                 Father's Day Tribute <br>
+                 <br>
+                In wisdom's hall, you shine so bright,<br>
+                A guiding star, both day and night.<br>
+                At forty-six, in your prime,<br>
+                A principal, so wise, sublime.<br>
+                <br>
+                A pharmacist with healing hands,<br>
+                You know the secrets of the lands.<br>
+                From ancient herbs to modern cures,<br>
+                Your knowledge and your care endures.<br>
+
+                A father dear, a friend so true,<br>
+                We celebrate and honor you.<br>
+                For all the love and wisdom shared,<br>
+                For every heart you've touched and cared.<br>
+                <br>
+                Happy Father's Day, with love so deep,<br>
+                In our hearts, your light we keep.
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
